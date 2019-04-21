@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 26">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0.143;
+      }
+    </style>
+  </defs>
+  <g id="Group_1981"  class="cls-1" transform="translate(0 32.075) rotate(-90)">
+    <circle id="Ellipse_3342"  cx="3" cy="3" r="3" transform="translate(26.075)"/>
+    <circle id="Ellipse_3575" cx="3" cy="3" r="3" transform="translate(16.075)"/>
+    <circle id="Ellipse_3576" cx="3" cy="3" r="3" transform="translate(6.075)"/>
+  </g>
+</svg>
