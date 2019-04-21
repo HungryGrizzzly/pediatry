@@ -6,6 +6,7 @@
         stroke: #b7b7b7;
         stroke-miterlimit: 10;
         stroke-width: 1.7px;
+        background: transparent;
       }
 
       .cls-2 {
@@ -13,10 +14,10 @@
       }
     </style>
   </defs>
-  <g id="Group_2054" data-name="Group 2054" transform="translate(0.85 0.85)">
-    <path id="Path_3194" data-name="Path 3194" class="cls-1" d="M21.5,1H2.5A1.5,1.5,0,0,0,1,2.5V21.5A1.5,1.5,0,0,0,2.5,23H21.5A1.5,1.5,0,0,0,23,21.5V2.5A1.5,1.5,0,0,0,21.5,1Z" transform="translate(-1 -1)"/>
-    <line id="Line_100" data-name="Line 100" class="cls-2" x2="15.016" transform="translate(3.492 11)"/>
-    <line id="Line_101" data-name="Line 101" class="cls-2" x2="15.016" transform="translate(3.492 5.712)"/>
-    <line id="Line_102" data-name="Line 102" class="cls-2" x2="15.016" transform="translate(3.492 16.287)"/>
+  <g id="Group_2054" transform="translate(0.85 0.85)">
+    <path id="Path_3194"  class="cls-1" d="M21.5,1H2.5A1.5,1.5,0,0,0,1,2.5V21.5A1.5,1.5,0,0,0,2.5,23H21.5A1.5,1.5,0,0,0,23,21.5V2.5A1.5,1.5,0,0,0,21.5,1Z" transform="translate(-1 -1)"/>
+    <line id="Line_100"  class="cls-2" x2="15.016" transform="translate(3.492 11)"/>
+    <line id="Line_101"  class="cls-2" x2="15.016" transform="translate(3.492 5.712)"/>
+    <line id="Line_102"  class="cls-2" x2="15.016" transform="translate(3.492 16.287)"/>
   </g>
 </svg>
