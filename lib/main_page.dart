@@ -36,14 +36,6 @@ class _MyHomePageState extends State<MainPage> {
     });
   }
 
-  Widget _buildAppBar(){
-    return AppBar(
-      title: Text(layoutName(_layoutType)),
-      elevation: 1.0,
-
-    );
-  }
-
   Widget _buildBody(){
         return NewsPage(title: layoutName(_layoutType),);
   }
@@ -54,7 +46,7 @@ class _MyHomePageState extends State<MainPage> {
         layoutIcon(layoutType),
         width: 24.0,
         height: 24.0,
-        color: index == _selectedTab? Colors.pink : Colors.grey,
+        color: index == _selectedTab? ACCENT_COLOR : SECONDARY_COLOR,
       ),
       title: Text(
           layoutName(layoutType),
@@ -73,13 +65,12 @@ class _MyHomePageState extends State<MainPage> {
       onTap: _onSelectTab,
       currentIndex: _selectedTab,
       iconSize: 20.0,
-      fixedColor: Colors.pink,
+      fixedColor: ACCENT_COLOR,
     );
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
       body: _buildBody(),
      bottomNavigationBar: _buildBottomNavBar(),
     );
