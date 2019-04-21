@@ -3,6 +3,7 @@ import 'package:pediatry/constants.dart';
 import 'package:pediatry/layout_type.dart';
 import 'package:pediatry/pages/news_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pediatry/pages/translations_page.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key, this.title}) : super(key: key);
@@ -37,7 +38,14 @@ class _MyHomePageState extends State<MainPage> {
   }
 
   Widget _buildBody(){
-        return NewsPage(title: layoutName(_layoutType),);
+    switch(_layoutType){
+      case LayoutType.news:
+        return NewsPage();
+      case LayoutType.translations:
+        return TranslationsPage();
+      default:
+        return NewsPage();
+    }
   }
 
   BottomNavigationBarItem _buildItem({LayoutType layoutType, int index}){
@@ -68,6 +76,7 @@ class _MyHomePageState extends State<MainPage> {
       fixedColor: ACCENT_COLOR,
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

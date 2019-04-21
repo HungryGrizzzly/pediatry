@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MainAppBar extends AppBar{
+class MainAppBar extends SliverAppBar{
   MainAppBar({
     Image leftImage,
     Image rightImage,
@@ -12,8 +12,10 @@ class MainAppBar extends AppBar{
 
           }
       ),
-    centerTitle: true,
-    title: Text(title),
+    flexibleSpace: FlexibleSpaceBar(
+      title: Text(title),
+      centerTitle: true,
+    ),
     elevation: .6,
     actions: <Widget>[
       IconButton(
@@ -22,6 +24,9 @@ class MainAppBar extends AppBar{
 
         },
       )
-    ]
+    ],
+    pinned: false,
+    floating: true,
+    snap: true,
   );
 }
