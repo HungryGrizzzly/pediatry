@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:pediatry/constants.dart';
 import 'package:pediatry/layout_type.dart';
+import 'package:pediatry/models/menu_item.dart';
+
 import 'package:pediatry/pages/news_page.dart';
 import 'package:pediatry/pages/translations_page.dart';
-import 'package:pediatry/models/menu_item.dart';
+import 'package:pediatry/pages/friends_page.dart';
+import 'package:pediatry/pages/webinars_page.dart';
+import 'package:pediatry/pages/conferentions_page.dart';
+import 'package:pediatry/pages/testing_page.dart';
+import 'package:pediatry/pages/details_page.dart';
+import 'package:pediatry/pages/support_page.dart';
+import 'package:pediatry/pages/messages_page.dart';
+
 
 class MainPage extends StatefulWidget {
   MainPage({Key key, this.title}) : super(key: key);
@@ -47,10 +56,25 @@ class _MyHomePageState extends State<MainPage> {
 
   Widget _buildBody(){
     switch(_layoutType){
+
       case LayoutType.news:
         return NewsPage(openMenu: openMenu,);
       case LayoutType.translations:
         return TranslationsPage(openMenu: openMenu,);
+      case LayoutType.messages:
+        return MessagesPage();
+      case LayoutType.friends:
+        return FriendsPage();
+      case LayoutType.webinars:
+        return WebinarsPage();
+      case LayoutType.conferentions:
+        return ConferentionsPage();
+      case LayoutType.testing:
+        return TestingPage();
+      case LayoutType.details:
+        return DetailsPage();
+      case LayoutType.support:
+        return SupportPage();
       default:
         return NewsPage();
     }
@@ -79,27 +103,31 @@ class _MyHomePageState extends State<MainPage> {
           _buildItem(layoutType: LayoutType.messages, index: 2)
         ],
         onTap: _onSelectTab,
-        currentIndex: _selectedTab,
+        currentIndex: _selectedTab > 2 ? 0 : _selectedTab,
         fixedColor: _isIconDecorNeeded ? ACCENT_COLOR : SECONDARY_COLOR,
       ),
     );
   }
 
-  Widget _buildMenuItem(String title, String image){
+  Widget _buildMenuItem(LayoutType layoutType){
     return ListTile(
         leading: Image.asset(
-            image,
+            layoutIcon(layoutType),
             width: 24.0,
           height: 24.0,
         ),
-        title: Text(title),
+        title: Text(layoutName(layoutType)),
       trailing:  Image.asset(
           'assets/icons/forward.png',
           width: 16.0,
           height: 16.0,
       ),
       onTap: (){
-
+          setState(() {
+            _layoutType = layoutType;
+            _selectedTab = 3;
+            _scaffoldKey.currentState.openEndDrawer();
+          });
       },
     );
     
@@ -124,11 +152,12 @@ class _MyHomePageState extends State<MainPage> {
               ],
             ),
           ),
-          _buildMenuItem('Друзья', 'assets/icons/friends.png'),
-          _buildMenuItem('Друзья', 'assets/icons/friends.png'),
-          _buildMenuItem('Друзья', 'assets/icons/friends.png'),
-          _buildMenuItem('Друзья', 'assets/icons/friends.png'),
-          _buildMenuItem('Друзья', 'assets/icons/friends.png'),
+          _buildMenuItem(LayoutType.friends),
+          _buildMenuItem(LayoutType.webinars),
+          _buildMenuItem(LayoutType.conferentions),
+          _buildMenuItem(LayoutType.testing),
+          _buildMenuItem(LayoutType.details),
+          _buildMenuItem(LayoutType.support),
 
         ],
       ),
