@@ -15,6 +15,31 @@ class NewsPage extends StatefulWidget{
 class NewsPageState extends State<NewsPage>{
   List<News> news = List();
 
+  Widget _buildSliverAppBar(){
+    return SliverAppBar(
+      leading:  IconButton(
+          icon: Image.asset('assets/icons/menu.png', width: 24, height: 24,),
+          onPressed: widget.openMenu
+      ),
+      flexibleSpace: FlexibleSpaceBar(
+        title: Text(NEWS_TITLE),
+        centerTitle: true,
+      ),
+      elevation: .6,
+      actions: <Widget>[
+        IconButton(
+          icon: Image.asset('assets/icons/user.png', width: 24.0, height: 24.0,),
+          onPressed: (){
+
+          },
+        )
+      ],
+      pinned: false,
+      floating: true,
+      snap: true,
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -34,28 +59,7 @@ class NewsPageState extends State<NewsPage>{
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        SliverAppBar(
-          leading:  IconButton(
-              icon: Image.asset('assets/icons/menu.png', width: 24, height: 24,),
-              onPressed: widget.openMenu
-          ),
-          flexibleSpace: FlexibleSpaceBar(
-            title: Text(NEWS_TITLE),
-            centerTitle: true,
-          ),
-          elevation: .6,
-          actions: <Widget>[
-            IconButton(
-              icon: Image.asset('assets/icons/user.png', width: 24.0, height: 24.0,),
-              onPressed: (){
-
-              },
-            )
-          ],
-          pinned: false,
-          floating: true,
-          snap: true,
-        ),
+        _buildSliverAppBar(),
         SliverNewsList(news: news)
       ],
     );
@@ -66,26 +70,21 @@ class SliverNewsList extends StatelessWidget{
 
   SliverNewsList({Key key, this.news}): super(key: key);
 
+  List<String> images = ['assets/images/card_1.png', 'assets/images/card_2.png', 'assets/images/card_3.png'];
+
   final List<News> news;
 
   Widget _buildCard(BuildContext context, int index){
     return Card(
       margin: EdgeInsets.all(10.0),
-      child: Container(
-        child: Column(
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                Image.asset(news[index].imgUrl),
-              ],
-            ),
-            Column(
-              children: <Widget>[
-                Text(news[index].title, style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),)
-              ],
-            )
-          ],
-        ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0)
+      ),
+      semanticContainer: true,
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: Image.asset(
+        images[index],
+        fit: BoxFit.cover,
       ),
     );
   }

@@ -3,7 +3,7 @@ import 'package:pediatry/constants.dart';
 import 'package:pediatry/layout_type.dart';
 import 'package:pediatry/pages/news_page.dart';
 import 'package:pediatry/pages/translations_page.dart';
-import 'package:pediatry/pages/menu_page.dart';
+import 'package:pediatry/models/menu_item.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key, this.title}) : super(key: key);
@@ -19,7 +19,8 @@ class _MyHomePageState extends State<MainPage> {
   int _selectedTab = 0;
   LayoutType _layoutType = LayoutType.news;
   bool _isIconDecorNeeded = true;
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  List<MenuItem> menuItems = [MenuItem('Друзья', 'assets/icons/friends.png')];
 
   void _onSelectTab(int index){
     setState(() {
@@ -41,13 +42,8 @@ class _MyHomePageState extends State<MainPage> {
   }
 
   void openMenu(){
-    setState(() {
-      _selectedTab = 0;
-      _layoutType = LayoutType.menu;
-    });
-    _isIconDecorNeeded = false;
+    _scaffoldKey.currentState.openDrawer();
   }
-
 
   Widget _buildBody(){
     switch(_layoutType){
@@ -55,8 +51,6 @@ class _MyHomePageState extends State<MainPage> {
         return NewsPage(openMenu: openMenu,);
       case LayoutType.translations:
         return TranslationsPage(openMenu: openMenu,);
-      case LayoutType.menu:
-        return MenuPage();
       default:
         return NewsPage();
     }
@@ -70,32 +64,103 @@ class _MyHomePageState extends State<MainPage> {
         height: 24.0,
         color: index == _selectedTab && _isIconDecorNeeded ? ACCENT_COLOR : SECONDARY_COLOR,
       ),
-      title: Text(
-          layoutName(layoutType),
-      ),
+      title: Container(height: 0.0,)
     );
   }
 
   Widget _buildBottomNavBar(){
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      items: [
-        _buildItem(layoutType: LayoutType.news, index: 0),
-        _buildItem(layoutType: LayoutType.translations, index: 1),
-        _buildItem(layoutType: LayoutType.messages, index: 2)
-      ],
-      onTap: _onSelectTab,
-      currentIndex: _selectedTab,
-      iconSize: 20.0,
-      fixedColor: _isIconDecorNeeded ? ACCENT_COLOR : SECONDARY_COLOR,
+    return SizedBox(
+      height: 44.0,
+      child: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        items: [
+          _buildItem(layoutType: LayoutType.news, index: 0),
+          _buildItem(layoutType: LayoutType.translations, index: 1),
+          _buildItem(layoutType: LayoutType.messages, index: 2)
+        ],
+        onTap: _onSelectTab,
+        currentIndex: _selectedTab,
+        fixedColor: _isIconDecorNeeded ? ACCENT_COLOR : SECONDARY_COLOR,
+      ),
+    );
+  }
+
+  Widget _buildMenuItem(String title, String image){
+    return ListTile(
+        leading: Image.asset(
+            image,
+            width: 24.0,
+          height: 24.0,
+        ),
+        title: Text(title),
+      trailing:  Image.asset(
+          'assets/icons/forward.png',
+          width: 16.0,
+          height: 16.0,
+      ),
+      onTap: (){
+
+      },
+    );
+    
+    
+  }
+
+  Widget _buildDrawer(){
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            child: Column(
+              children: <Widget>[
+                CircleAvatar(
+                  backgroundColor: ACCENT_COLOR,
+                  radius: 50.0,
+                  child: Image.asset('assets/icons/user.png', width: 50.0, color: Colors.white,),
+                ),
+                Text('Иванов Иван Иванович', style: TextStyle(fontSize: 16.0),),
+                Text('Гастроинтеролог, Минск', style: TextStyle(fontSize: 12.0, color: SECONDARY_COLOR),)
+              ],
+            ),
+          ),
+          _buildMenuItem('Друзья', 'assets/icons/friends.png'),
+          _buildMenuItem('Друзья', 'assets/icons/friends.png'),
+          _buildMenuItem('Друзья', 'assets/icons/friends.png'),
+          _buildMenuItem('Друзья', 'assets/icons/friends.png'),
+          _buildMenuItem('Друзья', 'assets/icons/friends.png'),
+
+        ],
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       body: _buildBody(),
+      drawer: _buildDrawer(),
       bottomNavigationBar: _buildBottomNavBar(),
+    );
+  }
+}
+
+class CircleImage extends StatelessWidget{
+
+  CircleImage({Key key, this.image}): super(key: key);
+
+  final String image;
+
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+        width: 50.0,
+        height: 50.0,
+        decoration: new BoxDecoration(
+            shape: BoxShape.circle,
+        ),
+      child: Image.asset(image),
     );
   }
 }
