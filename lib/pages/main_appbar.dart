@@ -4,7 +4,7 @@ class MainAppBar extends SliverAppBar{
   MainAppBar({
     Image leftImage,
     Image rightImage,
-    String title
+    String title,
 }): super(
     leading:  IconButton(
           icon: leftImage,

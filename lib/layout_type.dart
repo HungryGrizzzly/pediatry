@@ -3,7 +3,8 @@ enum LayoutType {
   news,
   translations,
   messages,
-  friends
+  friends,
+  menu
 }
 
 String layoutName(LayoutType layoutType){
@@ -16,6 +17,8 @@ String layoutName(LayoutType layoutType){
       return 'Сообщения';
     case LayoutType.friends:
       return 'Друзья';
+    case LayoutType.menu:
+      return 'Еще';
     default:
       return '';
   }

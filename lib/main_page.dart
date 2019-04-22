@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:pediatry/constants.dart';
 import 'package:pediatry/layout_type.dart';
 import 'package:pediatry/pages/news_page.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pediatry/pages/translations_page.dart';
+import 'package:pediatry/pages/menu_page.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key, this.title}) : super(key: key);
 
   final String title;
+
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -17,11 +18,13 @@ class MainPage extends StatefulWidget {
 class _MyHomePageState extends State<MainPage> {
   int _selectedTab = 0;
   LayoutType _layoutType = LayoutType.news;
+  bool _isIconDecorNeeded = true;
 
 
   void _onSelectTab(int index){
     setState(() {
       _selectedTab = index;
+      _isIconDecorNeeded = true;
 
       switch(index){
         case 0:
@@ -37,12 +40,23 @@ class _MyHomePageState extends State<MainPage> {
     });
   }
 
+  void openMenu(){
+    setState(() {
+      _selectedTab = 0;
+      _layoutType = LayoutType.menu;
+    });
+    _isIconDecorNeeded = false;
+  }
+
+
   Widget _buildBody(){
     switch(_layoutType){
       case LayoutType.news:
-        return NewsPage();
+        return NewsPage(openMenu: openMenu,);
       case LayoutType.translations:
-        return TranslationsPage();
+        return TranslationsPage(openMenu: openMenu,);
+      case LayoutType.menu:
+        return MenuPage();
       default:
         return NewsPage();
     }
@@ -54,7 +68,7 @@ class _MyHomePageState extends State<MainPage> {
         layoutIcon(layoutType),
         width: 24.0,
         height: 24.0,
-        color: index == _selectedTab? ACCENT_COLOR : SECONDARY_COLOR,
+        color: index == _selectedTab && _isIconDecorNeeded ? ACCENT_COLOR : SECONDARY_COLOR,
       ),
       title: Text(
           layoutName(layoutType),
@@ -73,7 +87,7 @@ class _MyHomePageState extends State<MainPage> {
       onTap: _onSelectTab,
       currentIndex: _selectedTab,
       iconSize: 20.0,
-      fixedColor: ACCENT_COLOR,
+      fixedColor: _isIconDecorNeeded ? ACCENT_COLOR : SECONDARY_COLOR,
     );
   }
 
@@ -81,7 +95,7 @@ class _MyHomePageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _buildBody(),
-     bottomNavigationBar: _buildBottomNavBar(),
+      bottomNavigationBar: _buildBottomNavBar(),
     );
   }
 }

@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:pediatry/pages/main_appbar.dart';
 import 'package:pediatry/constants.dart';
 import 'package:pediatry/models/news.dart';
-import 'dart:math';
 
 class NewsPage extends StatefulWidget{
 
+  final void Function() openMenu;
+
+  NewsPage({Key key, this.openMenu}):super(key: key);
   @override
   State<StatefulWidget> createState() => NewsPageState();
 }
 
 class NewsPageState extends State<NewsPage>{
   List<News> news = List();
-  TabController _tabController;
-  ScrollController _scrollViewController;
 
   @override
   void initState() {
@@ -27,24 +27,34 @@ class NewsPageState extends State<NewsPage>{
     news.add(News(id: 0,
         title: '24 февраля состоялось заседание Клуба детских гастроэнтерологов',
         imgUrl: 'assets/icons/image.png', likes: 2, comments: 4));
-    _scrollViewController = new ScrollController();
   }
 
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        MainAppBar(
-          title: NEWS_TITLE,
-          leftImage: Image.asset('assets/icons/menu.png', width: 24, height: 24,),
-          rightImage: Image.asset('assets/icons/user.png', width: 24.0, height: 24.0,),
+        SliverAppBar(
+          leading:  IconButton(
+              icon: Image.asset('assets/icons/menu.png', width: 24, height: 24,),
+              onPressed: widget.openMenu
+          ),
+          flexibleSpace: FlexibleSpaceBar(
+            title: Text(NEWS_TITLE),
+            centerTitle: true,
+          ),
+          elevation: .6,
+          actions: <Widget>[
+            IconButton(
+              icon: Image.asset('assets/icons/user.png', width: 24.0, height: 24.0,),
+              onPressed: (){
+
+              },
+            )
+          ],
+          pinned: false,
+          floating: true,
+          snap: true,
         ),
         SliverNewsList(news: news)
       ],
