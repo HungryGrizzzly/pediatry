@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pediatry/pages/main_appbar.dart';
 import 'package:pediatry/constants.dart';
 import 'package:pediatry/models/news.dart';
+import 'package:pediatry/activities/profile_activity.dart';
 
 class NewsPage extends StatefulWidget{
 
@@ -30,7 +31,10 @@ class NewsPageState extends State<NewsPage>{
         IconButton(
           icon: Image.asset('assets/icons/user.png', width: 24.0, height: 24.0,),
           onPressed: (){
-
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfileActivity()),
+            );
           },
         )
       ],

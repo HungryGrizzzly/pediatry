@@ -62,30 +62,30 @@ class _MyHomePageState extends State<MainPage> {
       case LayoutType.translations:
         return TranslationsPage(openMenu: openMenu,);
       case LayoutType.messages:
-        return MessagesPage();
+        return MessagesPage(openMenu: openMenu,);
       case LayoutType.friends:
-        return FriendsPage();
+        return FriendsPage(openMenu: openMenu,);
       case LayoutType.webinars:
-        return WebinarsPage();
+        return WebinarsPage(openMenu: openMenu,);
       case LayoutType.conferentions:
-        return ConferentionsPage();
+        return ConferentionsPage(openMenu: openMenu,);
       case LayoutType.testing:
-        return TestingPage();
+        return TestingPage(openMenu: openMenu,);
       case LayoutType.details:
-        return DetailsPage();
+        return DetailsPage(openMenu: openMenu,);
       case LayoutType.support:
-        return SupportPage();
+        return SupportPage(openMenu: openMenu,);
       default:
         return NewsPage();
     }
   }
 
-  BottomNavigationBarItem _buildItem({LayoutType layoutType, int index}){
+  BottomNavigationBarItem _buildNavBarItem({LayoutType layoutType, int index}){
     return BottomNavigationBarItem(
       icon: Image.asset(
         layoutIcon(layoutType),
-        width: 24.0,
-        height: 24.0,
+        width: 22.0,
+        height: 22.0,
         color: index == _selectedTab && _isIconDecorNeeded ? ACCENT_COLOR : SECONDARY_COLOR,
       ),
       title: Container(height: 0.0,)
@@ -98,9 +98,9 @@ class _MyHomePageState extends State<MainPage> {
       child: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: [
-          _buildItem(layoutType: LayoutType.news, index: 0),
-          _buildItem(layoutType: LayoutType.translations, index: 1),
-          _buildItem(layoutType: LayoutType.messages, index: 2)
+          _buildNavBarItem(layoutType: LayoutType.news, index: 0),
+          _buildNavBarItem(layoutType: LayoutType.translations, index: 1),
+          _buildNavBarItem(layoutType: LayoutType.messages, index: 2)
         ],
         onTap: _onSelectTab,
         currentIndex: _selectedTab > 2 ? 0 : _selectedTab,
@@ -110,25 +110,32 @@ class _MyHomePageState extends State<MainPage> {
   }
 
   Widget _buildMenuItem(LayoutType layoutType){
-    return ListTile(
+    return Container(
+      child: ListTile(
         leading: Image.asset(
-            layoutIcon(layoutType),
-            width: 24.0,
+          layoutIcon(layoutType),
+          width: 24.0,
           height: 24.0,
         ),
-        title: Text(layoutName(layoutType)),
-      trailing:  Image.asset(
+        title: Text(layoutName(layoutType), style: TextStyle(fontWeight: FontWeight.normal),),
+        trailing:  Image.asset(
           'assets/icons/forward.png',
           width: 16.0,
           height: 16.0,
-      ),
-      onTap: (){
+        ),
+        onTap: (){
           setState(() {
             _layoutType = layoutType;
             _selectedTab = 3;
             _scaffoldKey.currentState.openEndDrawer();
           });
-      },
+        },
+      ),
+      decoration: new BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: SECONDARY_COLOR, width: .1)
+        )
+      ),
     );
     
     

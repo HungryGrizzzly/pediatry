@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 const String NEWS_TITLE = 'Новости';
 const String TRANSLATIONS_TITLE = 'Трансляции';
 const String MESSAGES_TITLE = 'Сообщения';
+const String FRIENDS_TITLE = 'Друзья';
+const String CONFERENTIONS_TITLE = 'Концеренции';
+const String WEBINARS_TITLE = 'Вебинары';
+const String TESTING_TITLE = 'Тестирование';
+const String DETAILS_TITLE = 'Разборы';
+const String SUPPORT_TITLE = 'Поддержка';
 
 const Color PRIMARY_COLOR = Color(0xFFFFFFFF);
 const Color ACCENT_COLOR = Color(0xFFB3A0CC);
