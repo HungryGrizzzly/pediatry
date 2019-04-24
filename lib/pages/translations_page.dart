@@ -14,6 +14,13 @@ class TranslationsPage extends StatefulWidget{
 
 class TranslationPageState extends State<TranslationsPage>{
 
+  List<String> images = [
+    'assets/images/t_1.png',
+    'assets/images/t_2.png',
+    'assets/images/t_3.png',
+    'assets/images/t_4.png',
+
+  ];
   Widget _buildSliverAppBar(){
     return SliverAppBar(
       leading:  IconButton(
@@ -39,10 +46,69 @@ class TranslationPageState extends State<TranslationsPage>{
   }
 
   Widget _sliverGridItemBuilder(BuildContext context, int index){
-    return Container(
-      alignment: Alignment.center,
-      color: Colors.teal[100*(index%9)],
-      child: Text('grid item $index'),
+    return Card(
+
+      margin: EdgeInsets.all(8),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0)
+      ),
+      semanticContainer: true,
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: InkWell(
+        onTap: (){
+          print("tap");
+        },
+        child: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            Image.asset(
+              images[index % 4],
+              fit: BoxFit.cover,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      stops: [.4, .9],
+                      colors: [
+                        Colors.transparent,
+                        Colors.black.withAlpha(120)
+                      ]
+                  )
+              ),
+            ),
+            Positioned(
+              bottom: 25,
+              left: 10,
+              child: Text('24.02', style: TextStyle(color: Colors.white),),
+            ),
+            Positioned(
+              bottom: 10,
+              left: 10,
+              child: Text('19.00', style: TextStyle(color: Colors.white),),
+            ),
+            Positioned(
+              bottom: 11,
+              left: 51,
+              child: Container(
+                width: 1,
+                height: 30,
+                color: Colors.white,
+              ),
+            ),
+            Positioned(
+              bottom: 10,
+              left: 60,
+              child: Container(
+                width: 90,
+                height: 32,
+                child: Text('Современная педиатрия', style: TextStyle(fontSize: 14, color: Colors.white),),
+              ),
+            ),
+          ],
+        ),
+      )
     );
   }
 
@@ -52,11 +118,11 @@ class TranslationPageState extends State<TranslationsPage>{
           maxCrossAxisExtent: 200.0,
           mainAxisSpacing: 10.0,
           crossAxisSpacing: 10.0,
-          childAspectRatio: 4.0
+          childAspectRatio: .9
       ),
       delegate: SliverChildBuilderDelegate(
         _sliverGridItemBuilder,
-        childCount: 40
+        childCount: 16
       ),
     );
   }
