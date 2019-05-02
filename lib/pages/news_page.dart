@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pediatry/constants.dart';
 import 'package:pediatry/models/news.dart';
 import 'package:pediatry/activities/profile_activity.dart';
+import 'package:pediatry/routes/slide_right_route.dart';
+import 'package:pediatry/routes/fade_in.dart';
 
 class NewsPage extends StatefulWidget {
   final void Function() openMenu;
@@ -29,18 +31,18 @@ class NewsPageState extends State<NewsPage> {
       ),
       elevation: .6,
       actions: <Widget>[
-        IconButton(
-          icon: Image.asset(
-            'assets/icons/user.png',
-            width: 24.0,
-            height: 24.0,
+        Hero(
+          tag: 'userImage',
+          child: IconButton(
+            icon: Image.asset(
+              USER_IMAGE,
+              width: 30.0,
+              height: 30.0,
+            ),
+            onPressed: () {
+              Navigator.pushNamed(context, '/profile');
+            },
           ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ProfileActivity()),
-            );
-          },
         )
       ],
       pinned: false,
@@ -99,35 +101,45 @@ class SliverNewsList extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
         semanticContainer: true,
         clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Column(
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                Stack(
-                  children: <Widget>[
-                    SizedBox(
-                      height: 186,
-                    ),
-                    Image.asset(news[index].imgUrl),
-                    Positioned(
-                        left: 23,
-                        bottom: 0,
-                        child: Image.asset(
-                          'assets/icons/doctor_circle.png',
-                          width: 54,
-                          height: 54,
-                        ))
-                  ],
-                ),
-                Column(
-                  children: <Widget>[
-                    _buildTitle(news[index].title),
-                    _buildCardBottom(index)
-                  ],
-                )
-              ],
-            ),
-          ],
+        child: InkWell(
+          onTap: () {
+            Navigator.pushNamed(context, '/news',
+                arguments: NewsArguments(
+                    title: news[index].title, url: news[index].imgUrl, heroTag: 'newsImage$index'));
+          },
+          child: Column(
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  Stack(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 186,
+                      ),
+                      Hero(
+                        tag: 'newsImage$index',
+                        child: Image.asset(news[index].imgUrl),
+                      ),
+                      Positioned(
+                          left: 23,
+                          bottom: 0,
+                          child: Image.asset(
+                            'assets/icons/doctor_circle.png',
+                            width: 54,
+                            height: 54,
+                          ))
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      _buildTitle(news[index].title),
+                      _buildCardBottom(index)
+                    ],
+                  )
+                ],
+              ),
+            ],
+          ),
         ));
   }
 
@@ -137,7 +149,7 @@ class SliverNewsList extends StatelessWidget {
         child: Text(
           title,
           style: TextStyle(
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w700,
               fontSize: 17,
               letterSpacing: .3,
               height: 1.1),
@@ -154,41 +166,13 @@ class SliverNewsList extends StatelessWidget {
             style: TextStyle(color: Colors.grey),
           ),
           Spacer(),
-          Likes(amount: 2,),
+          Likes(
+            amount: 2,
+          ),
           _buildComments()
         ],
       ),
     );
-  }
-
-  Widget _buildLikes() {
-    return InkWell(
-        onTap: () {},
-        child: Container(
-          width: 40,
-          height: 30,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
-          alignment: Alignment(0, 0),
-          child: Container(
-            width: 30,
-            height: 40,
-            alignment: Alignment(10, 0),
-            child: Row(
-              children: <Widget>[
-                Image.asset('assets/icons/like.png', width: 14, height: 14),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 5,
-                  ),
-                  child: Text(
-                    '2',
-                    style: TextStyle(fontWeight: FontWeight.w300),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ));
   }
 
   Widget _buildComments() {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pediatry/constants.dart';
 
 class SupportPage extends StatefulWidget{
 

@@ -9,6 +9,7 @@ const String WEBINARS_TITLE = 'Вебинары';
 const String TESTING_TITLE = 'Тестирование';
 const String DETAILS_TITLE = 'Разборы';
 const String SUPPORT_TITLE = 'Поддержка';
+const String USER_IMAGE = 'assets/images/user_image.png';
 
 const Color PRIMARY_COLOR = Color(0xFFFFFFFF);
 const Color ACCENT_COLOR = Color(0xFFB3A0CC);

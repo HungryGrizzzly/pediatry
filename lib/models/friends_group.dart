@@ -1,7 +1,7 @@
 class FriendsGroup{
 
-  FriendsGroup({this.group, this.friends});
+  FriendsGroup({this.group, this.friend});
 
   final String group;
-  final List<String> friends;
+  final String friend;
 }

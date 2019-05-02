@@ -41,6 +41,20 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+  fonts:
+    - family: Gotham
+      fonts:
+        - asset: assets/fonts/GothamPro-Bold.ttf
+          weight: 900
+        - asset: assets/fonts/GothamPro.ttf
+          style: normal
+          weight: 700
+        - asset: assets/fonts/GothamPro-Light.ttf
+          weight: 500
+          style: normal
+        - asset: assets/fonts/GothamPro-Medium.ttf
+          weight: 300
+       
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

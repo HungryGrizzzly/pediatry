@@ -47,7 +47,6 @@ class TranslationPageState extends State<TranslationsPage>{
 
   Widget _sliverGridItemBuilder(BuildContext context, int index){
     return Card(
-
       margin: EdgeInsets.all(8),
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0)
@@ -81,15 +80,15 @@ class TranslationPageState extends State<TranslationsPage>{
             Positioned(
               bottom: 25,
               left: 10,
-              child: Text('24.02', style: TextStyle(color: Colors.white),),
+              child: Text('24.02', style: TextStyle(color: Colors.white, fontSize: 12),),
             ),
             Positioned(
               bottom: 10,
               left: 10,
-              child: Text('19.00', style: TextStyle(color: Colors.white),),
+              child: Text('19.00', style: TextStyle(color: Colors.white, fontSize: 12),),
             ),
             Positioned(
-              bottom: 11,
+              bottom: 9,
               left: 51,
               child: Container(
                 width: 1,
@@ -98,12 +97,12 @@ class TranslationPageState extends State<TranslationsPage>{
               ),
             ),
             Positioned(
-              bottom: 10,
+              bottom: 4,
               left: 60,
               child: Container(
-                width: 90,
+                width: 95,
                 height: 32,
-                child: Text('Современная педиатрия', style: TextStyle(fontSize: 14, color: Colors.white),),
+                child: Text('Современная педиатрия', style: TextStyle(fontSize: 13, color: Colors.white),),
               ),
             ),
           ],
