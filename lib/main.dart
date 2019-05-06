@@ -8,6 +8,7 @@ import 'routes/slide_right_route.dart';
 import 'activities/news_activity.dart';
 import 'models/news.dart';
 import 'activities/translation_activity.dart';
+import 'activities/details_activity/details_activity.dart';
 
 void main() => runApp(MyApp());
 
@@ -39,6 +40,8 @@ class MyApp extends StatelessWidget {
             });
           case '/translation':
             return SlideRightRoute(widget: TranslationActivity());
+            case '/details':
+            return SlideRightRoute(widget: DetailsActivity());
         }
       },
       title: 'pediatry',

@@ -39,9 +39,7 @@ class TranslationPageState extends State<TranslationsPage>{
           },
         )
       ],
-      pinned: false,
-      floating: true,
-      snap: true,
+      pinned: true,
     );
   }
 
@@ -55,7 +53,7 @@ class TranslationPageState extends State<TranslationsPage>{
       clipBehavior: Clip.antiAliasWithSaveLayer,
       child: InkWell(
         onTap: (){
-          print("tap");
+          Navigator.of(context).pushNamed('/translation');
         },
         child: Stack(
           fit: StackFit.expand,

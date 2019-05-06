@@ -49,9 +49,7 @@ class MessagesPageState extends State<MessagesPage> {
           onPressed: () {},
         )
       ],
-      pinned: false,
-      floating: true,
-      snap: true,
+      pinned: true,
     );
   }
 

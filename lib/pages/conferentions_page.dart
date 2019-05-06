@@ -41,8 +41,6 @@ class ConferentionsPageState extends State<ConferentionsPage>
         )
       ],
       pinned: true,
-      floating: true,
-      snap: true,
       forceElevated: innerIsScrolled,
       bottom: TabBar(
         controller: _tabController,

@@ -189,27 +189,33 @@ class _MyHomePageState extends State<MainPage> {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          DrawerHeader(
-            child: Column(
-              children: <Widget>[
-                CircleAvatar(
-                  backgroundColor: ACCENT_COLOR,
-                  radius: 50.0,
-                  child: Image.asset(
-                    'assets/icons/user.png',
-                    width: 50.0,
-                    color: Colors.white,
+          Container(
+            height: 210,
+            child: DrawerHeader(
+              child: Column(
+                children: <Widget>[
+                  CircleAvatar(
+                    backgroundColor: ACCENT_COLOR,
+                    radius: 50.0,
+                    child: Image.asset(
+                      'assets/icons/user.png',
+                      width: 50.0,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-                Text(
-                  'Иванов Иван Иванович',
-                  style: TextStyle(fontSize: 16.0),
-                ),
-                Text(
-                  'Гастроинтеролог, Минск',
-                  style: TextStyle(fontSize: 12.0, color: SECONDARY_COLOR),
-                )
-              ],
+                  Padding(
+                    padding: EdgeInsets.only(top: 20),
+                    child: Text(
+                      'Иванов Иван Иванович',
+                      style: TextStyle(fontSize: 16.0),
+                    ),
+                  ),
+                  Text(
+                    'Гастроинтеролог, Минск',
+                    style: TextStyle(fontSize: 12.0, color: SECONDARY_COLOR),
+                  )
+                ],
+              ),
             ),
           ),
           _buildMenuItem(LayoutType.friends),

@@ -33,7 +33,7 @@ class TestingPageStart extends StatelessWidget {
                 )),
             Positioned(
                 right: 0,
-                top: 40,
+                top: 30,
                 child: RawMaterialButton(
                   onPressed: () {
                     Navigator.pop(context);
@@ -44,6 +44,7 @@ class TestingPageStart extends StatelessWidget {
                   ),
                   shape: CircleBorder(),
                   fillColor: Colors.black26,
+                  elevation: 0,
                 )),
             Positioned(
               bottom: 0,

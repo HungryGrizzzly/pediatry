@@ -4,7 +4,7 @@ import 'package:pediatry/models/news.dart';
 import 'package:pediatry/activities/profile_activity.dart';
 import 'package:pediatry/routes/slide_right_route.dart';
 import 'package:pediatry/routes/fade_in.dart';
-
+import 'package:pediatry/views/buttons.dart';
 class NewsPage extends StatefulWidget {
   final void Function() openMenu;
 
@@ -45,9 +45,7 @@ class NewsPageState extends State<NewsPage> {
           ),
         )
       ],
-      pinned: false,
-      floating: true,
-      snap: true,
+      pinned: true,
     );
   }
 
@@ -100,7 +98,7 @@ class SliverNewsList extends StatelessWidget {
         margin: EdgeInsets.only(left: 10, right: 10, top: 15, bottom: 5),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
         semanticContainer: true,
-        clipBehavior: Clip.antiAliasWithSaveLayer,
+        clipBehavior: Clip.antiAlias,
         child: InkWell(
           onTap: () {
             Navigator.pushNamed(context, '/news',
@@ -166,43 +164,11 @@ class SliverNewsList extends StatelessWidget {
             style: TextStyle(color: Colors.grey),
           ),
           Spacer(),
-          Likes(
-            amount: 2,
-          ),
-          _buildComments()
+          LikesButton(likes: 2,),
+          CommentsButton(comments: 2,)
         ],
       ),
     );
-  }
-
-  Widget _buildComments() {
-    return InkWell(
-        onTap: () {},
-        child: Container(
-          width: 40,
-          height: 30,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
-          alignment: Alignment(0, 0),
-          child: Container(
-            width: 30,
-            height: 40,
-            alignment: Alignment(10, 0),
-            child: Row(
-              children: <Widget>[
-                Image.asset('assets/icons/comments.png', width: 14, height: 14),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 5,
-                  ),
-                  child: Text(
-                    '2',
-                    style: TextStyle(fontWeight: FontWeight.w300),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ));
   }
 
   @override
@@ -210,44 +176,5 @@ class SliverNewsList extends StatelessWidget {
     return SliverList(
       delegate: SliverChildBuilderDelegate(_buildCard, childCount: news.length),
     );
-  }
-}
-
-class Likes extends StatelessWidget {
-  Likes({Key key, this.amount}) : super(key: key);
-
-  var amount = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-        onTap: () {
-          amount++;
-        },
-        child: Container(
-          width: 40,
-          height: 30,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
-          alignment: Alignment(0, 0),
-          child: Container(
-            width: 30,
-            height: 40,
-            alignment: Alignment(10, 0),
-            child: Row(
-              children: <Widget>[
-                Image.asset('assets/icons/like.png', width: 14, height: 14),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 5,
-                  ),
-                  child: Text(
-                    amount.toString(),
-                    style: TextStyle(fontWeight: FontWeight.w300),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ));
   }
 }

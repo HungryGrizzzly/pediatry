@@ -49,9 +49,7 @@ class FriendsPageState extends State<FriendsPage> {
           onPressed: () {},
         )
       ],
-      pinned: false,
-      floating: true,
-      snap: true,
+      pinned: true,
     );
   }
 

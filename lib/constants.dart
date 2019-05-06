@@ -27,3 +27,10 @@ const MaterialColor WHITE_FUCKING_COLOR = MaterialColor(0xFFFFFFFF, <int, Color>
   800: Color(0xFF494980),
   900: Color(0xFF181861),
 });
+
+const Routes ={
+  'main': '/',
+  'profile': '/profile',
+  'testing': '/testing',
+  'details': '/details'
+};
