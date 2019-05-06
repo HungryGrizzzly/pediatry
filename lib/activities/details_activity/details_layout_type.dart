@@ -1,0 +1,4 @@
+enum DetailsLayoutType{
+  start,
+  questions
+}
