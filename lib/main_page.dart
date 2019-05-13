@@ -185,33 +185,35 @@ class _MyHomePageState extends State<MainPage> {
   }
 
   Widget _buildDrawer() {
+    double headerHeight = MediaQuery.of(context).size.height / 3;
+    double radius = MediaQuery.of(context).size.height / 12;
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
           Container(
-            height: 210,
+            height: headerHeight,
             child: DrawerHeader(
               child: Column(
                 children: <Widget>[
                   CircleAvatar(
                     backgroundColor: ACCENT_COLOR,
-                    radius: 50.0,
+                    radius: radius,
                     child: Image.asset(
                       'assets/icons/user.png',
-                      width: 50.0,
+                      width: radius,
                       color: Colors.white,
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 20),
+                    padding: EdgeInsets.only(top: 20, bottom: 10),
                     child: Text(
                       'Иванов Иван Иванович',
                       style: TextStyle(fontSize: 16.0),
                     ),
                   ),
                   Text(
-                    'Гастроинтеролог, Минск',
+                    'Гастроэнтеролог, Минск',
                     style: TextStyle(fontSize: 12.0, color: SECONDARY_COLOR),
                   )
                 ],

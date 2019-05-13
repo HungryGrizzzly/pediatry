@@ -191,7 +191,7 @@ class DetailsQuestionsPageState extends State<DetailsQuestionsPage> {
               disabledTextColor: Colors.white,
               onPressed: !_isButtonDisabled
                   ? () {
-                if(_currentQuestion <questions.length){
+                if(_currentQuestion <questions.length - 1){
                   setState(() {
                     _currentQuestion++;
                   });

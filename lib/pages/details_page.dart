@@ -49,7 +49,7 @@ class DetailsPageState extends State<DetailsPage> {
   }
 
   Widget _buildCard(BuildContext context, int position) {
-    var image = Image.asset(details[position].imgUrl);
+    var image = Image.asset(details[position].imgUrl, fit: BoxFit.fill, width: MediaQuery.of(context).size.width -20,);
     var title = Text(
       details[position].title,
       style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, height: 1.2),

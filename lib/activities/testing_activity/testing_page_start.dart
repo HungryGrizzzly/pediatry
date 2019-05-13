@@ -10,18 +10,19 @@ class TestingPageStart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double imageHeight = MediaQuery.of(context).size.height * 2 /3;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Stack(
           children: <Widget>[
             Container(
-              height: MediaQuery.of(context).size.width * 1.5,
+              height: imageHeight + 40,
             ),
             Positioned(
                 top: 0,
                 left: 0,
-                height: MediaQuery.of(context).size.width * 1.4,
+                height: imageHeight,
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
